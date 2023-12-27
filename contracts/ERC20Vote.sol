@@ -6,6 +6,7 @@ pragma solidity ^0.8.0;
 import "@thirdweb-dev/contracts/external-deps/openzeppelin/token/ERC20/extensions/ERC20Votes.sol";
 
 import "./ERC20Base.sol";
+import "@thirdweb-dev/contracts/extension/Permissions.sol";
 import "@thirdweb-dev/contracts/extension/PermissionsEnumerable.sol";
 import "@thirdweb-dev/contracts/extension/interface/IMintableERC20.sol";
 import "@thirdweb-dev/contracts/extension/interface/IBurnableERC20.sol";
@@ -32,8 +33,8 @@ contract ERC20Vote is ContractMetadata, Multicall, Ownable, ERC20Votes, Permissi
                             Constructor
     //////////////////////////////////////////////////////////////*/
 
-    constructor(string memory _name, string memory _symbol) ERC20Permit(_name, _symbol) {
-        _setupOwner(msg.sender);
+    constructor(address _defaultAdmin, string memory _name, string memory _symbol) ERC20Permit(_name, _symbol) {
+        _setupOwner(_defaultAdmin);
         _setupRole(DEFAULT_ADMIN_ROLE, msg.sender);
     }
 

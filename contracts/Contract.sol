@@ -5,11 +5,13 @@ import "./ERC20SignatureMintVote.sol";
 
 contract SudigitalToken is ERC20SignatureMintVote {
       constructor(
+        address _defaultAdmin,
         string memory _name,
         string memory _symbol,
         address _primarySaleRecipient
     )
         ERC20SignatureMintVote(
+            _defaultAdmin,
             _name,
             _symbol,
             _primarySaleRecipient
