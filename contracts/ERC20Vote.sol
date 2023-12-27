@@ -32,8 +32,9 @@ contract ERC20Vote is ContractMetadata, Multicall, Ownable, ERC20Votes, Permissi
                             Constructor
     //////////////////////////////////////////////////////////////*/
 
-    constructor(address _defaultAdmin, string memory _name, string memory _symbol) ERC20Permit(_name, _symbol) {
-        _setupOwner(_defaultAdmin);
+    constructor(string memory _name, string memory _symbol) ERC20Permit(_name, _symbol) {
+        _setupOwner(msg.sender);
+        _setupRole(DEFAULT_ADMIN_ROLE, msg.sender);
     }
 
     /*//////////////////////////////////////////////////////////////
